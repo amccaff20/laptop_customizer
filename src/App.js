@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
-import slugify from 'slugify';
+//import slugify from 'slugify';
 
 import './App.css';
+import Header from './Header';
+import MainForm from './MainForm';
+import MainSummary from './MainSummary';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -44,6 +47,8 @@ class App extends Component {
   };
 
   render() {
+
+    /**** Moved to MainForm 
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
@@ -63,8 +68,9 @@ class App extends Component {
             </label>
           </div>
         );
-      });
+      });*/
 
+      /****   Moved to Feature 
       return (
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
@@ -73,8 +79,9 @@ class App extends Component {
           {options}
         </fieldset>
       );
-    });
+    });*/
 
+    /****  Moved to MainSummary 
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
@@ -88,7 +95,7 @@ class App extends Component {
           </div>
         </div>
       );
-    });
+    });*/
 
     const total = Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
@@ -97,24 +104,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
+        <Header />
         <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            {features}
-          </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div>
-          </section>
+          <MainForm />
+          <MainSummary />
         </main>
       </div>
     );
